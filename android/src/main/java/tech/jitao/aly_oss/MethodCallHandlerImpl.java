@@ -129,6 +129,7 @@ public class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
         request.setProgressCallback(new OSSProgressCallback<PutObjectRequest>() {
             @Override
             public void onProgress(PutObjectRequest request, long currentSize, long totalSize) {
+
                 final Map<String, String> arguments = Maps.newHashMap();
                 arguments.put("instanceId", instanceId);
                 arguments.put("requestId", requestId);
@@ -146,12 +147,15 @@ public class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
                     public void onSuccess(PutObjectRequest request, PutObjectResult result) {
                         Log.d("onSuccess", "RequestId: " + result.getRequestId());
 
+                        String url = oss.presignPublicObjectURL(request.getBucketName(), key);
+
                         final Map<String, String> arguments = Maps.newHashMap();
                         arguments.put("success", "true");
                         arguments.put("instanceId", instanceId);
                         arguments.put("requestId", requestId);
                         arguments.put("bucket", bucket);
                         arguments.put("key", key);
+                        arguments.put("url", url);
                         invokeMethod("onUpload", arguments);
                     }
 
