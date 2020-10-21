@@ -140,12 +140,13 @@ abstract class Response {
 class KeyResponse extends Response {
   final String bucket;
   final String key;
+  final String url;
 
-  KeyResponse({success, requestId, this.bucket, this.key}) : super(success: success, requestId: requestId);
+  KeyResponse({success, requestId, this.bucket, this.key, this.url}) : super(success: success, requestId: requestId);
 }
 
 class UploadResponse extends KeyResponse {
-  UploadResponse({success, requestId, bucket, key}) : super(success: success, requestId: requestId, bucket: bucket, key: key);
+  UploadResponse({success, requestId, bucket, key,url}) : super(success: success, requestId: requestId, bucket: bucket, key: key,url:url);
 
   UploadResponse.fromMap(Map map)
       : super(
@@ -153,6 +154,7 @@ class UploadResponse extends KeyResponse {
           requestId: map['requestId'],
           bucket: map['bucket'],
           key: map['key'],
+          url: map['url'],
         );
 
   String toString() {
