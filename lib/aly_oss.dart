@@ -33,6 +33,7 @@ class AlyOss {
         instance._onProgressController.add(ProgressResponse.fromMap(methodCall.arguments));
         break;
       case 'onUpload':
+        print('onUpload=========='+UploadResponse.fromMap(methodCall.arguments).url);
         instance._onUploadController.add(UploadResponse.fromMap(methodCall.arguments));
         break;
       default:

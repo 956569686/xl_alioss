@@ -148,7 +148,7 @@ public class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
                         Log.d("onSuccess", "RequestId: " + result.getRequestId());
 
                         String url = oss.presignPublicObjectURL(request.getBucketName(), key);
-
+                        Log.i("upload", "instanceId=" + instanceId + ", bucket=" + bucket + ", key=" + key + ", file=" + file + "asyncPutObject,url="+url);
                         final Map<String, String> arguments = Maps.newHashMap();
                         arguments.put("success", "true");
                         arguments.put("instanceId", instanceId);
