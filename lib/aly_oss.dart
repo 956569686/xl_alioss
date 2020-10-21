@@ -158,7 +158,7 @@ class UploadResponse extends KeyResponse {
         );
 
   String toString() {
-    return '{success:$success, requestId:$requestId, bucket:$bucket, key:$key}';
+    return '{success:$success, requestId:$requestId, bucket:$bucket, key:$key, url:$url}';
   }
 }
 
